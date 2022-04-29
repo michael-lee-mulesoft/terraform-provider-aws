@@ -203,7 +203,7 @@ func flattenNonDefaultServerlessApplicationCloudFormationParameters(cfParams []*
 	for _, p := range cfParams {
 		key := aws.StringValue(p.ParameterKey)
 		value := aws.StringValue(p.ParameterValue)
-		if value != aws.StringValue(parameterDefinitions[key].DefaultValue) {
+		if parameterDefinitions[key] != nil && value != aws.StringValue(parameterDefinitions[key].DefaultValue) {
 			params[key] = value
 		}
 	}
